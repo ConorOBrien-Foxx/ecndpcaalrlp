@@ -7,7 +7,7 @@
 |`@`|pops top of stack and prints that popped number as a character|
 |`#`|pops top of stack and prints that popped number as a number|
 |`$`|swaps the top two members of the stack|
-|`%`|rotates the stack by 1 to the left|
+|`%`|rotates the stack by 1 to the right (top goes to bottom)|
 |`^`|increments the top of the stack|
 |`&`|(unimplemented)|
 |`*`|reads 1 byte of input from STDIN and adds it to top of stack|
