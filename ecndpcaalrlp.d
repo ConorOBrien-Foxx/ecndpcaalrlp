@@ -18,21 +18,21 @@ class EcndpcaalrlpState {
     private {
         string      code;
         uint        ptr;
-        Atom[]      registers;
+        Atom[]      stack;
         uint[uint]  jumpPositions;
     }
     
     void push(T)(T val) {
-        registers ~= cast(Atom) val;
+        stack ~= cast(Atom) val;
     }
     
     auto pop() {
-        if(registers.length == 0) {
+        if(stack.length == 0) {
             return cast(Atom) 0;
         }
         else {
-            auto res = registers.back;
-            registers.popBack;
+            auto res = stack.back;
+            stack.popBack;
             return res;
         }
     }
@@ -59,8 +59,8 @@ class EcndpcaalrlpState {
     bool running() { return ptr < code.length; }
     
     ref auto top() {
-        if(registers.length == 0) push(0);
-        return registers.back;
+        if(stack.length == 0) push(0);
+        return stack.back;
     }
     
     void step() {
@@ -70,7 +70,7 @@ class EcndpcaalrlpState {
         switch(cur) {
             // duplicate value
             case '!':
-                push(registers.back);
+                push(stack.back);
                 break;
             
             // write character
@@ -93,7 +93,7 @@ class EcndpcaalrlpState {
             
             // 
             case '%':
-                bringToFront(registers[1..$], registers[0..1]);
+                bringToFront(stack[1..$], stack[0..1]);
                 break;
             
             case '^':
@@ -147,7 +147,7 @@ class EcndpcaalrlpState {
     }
     
     void info() {
-        foreach(i, reg; registers) {
+        foreach(i, reg; stack) {
             writefln("Reg[%s] -> %s", i, reg);
         }
     }
