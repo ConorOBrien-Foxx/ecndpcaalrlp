@@ -16,3 +16,9 @@
 |`_`|negate top of stack|
 |`+`|pops top of stack and adds it to the new top of stack|
 |`?`|prints state info|
+
+All other characters push their values. Popping from an empty stack pushes 0.
+
+## Snippets
+
+ - pop top of stack: `!_++`
