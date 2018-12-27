@@ -91,46 +91,55 @@ class EcndpcaalrlpState {
                 push(b);
                 break;
             
-            // 
+            // sends top to the bottom of the stack
             case '%':
                 bringToFront(stack[1..$], stack[0..1]);
                 break;
             
+            // increments the top of stack
             case '^':
                 top++;
                 break;
             
+            // unimplemented
             case '&':
                 break;
             
+            // prints info
             case '?':
                 info;
                 break;
             
+            // getchar
             case '*':
                 top += getchar;
                 break;
             
+            // open loop
             case '(':
                 if(top == 0) {
                     ptr = jumpPositions[ptr];
                 }
                 break;
             
+            // close loop
             case ')':
                 ptr = jumpPositions[ptr];
                 advance = false;
                 break;
             
+            // negate tos
             case '_':
                 top = -top;
                 break;
             
+            // add top two
             case '+':
                 auto v = pop;
                 top += v;
                 break;
             
+            // push value
             default:
                 push(cast(uint) cur);
                 break;
@@ -148,7 +157,7 @@ class EcndpcaalrlpState {
     
     void info() {
         foreach(i, reg; stack) {
-            writefln("Reg[%s] -> %s", i, reg);
+            writefln("%s: %s", i, reg);
         }
     }
 }
