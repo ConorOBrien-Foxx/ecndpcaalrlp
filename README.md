@@ -9,7 +9,7 @@
 |`$`|swaps the top two members of the stack|
 |`%`|rotates the stack by 1 to the right (top goes to bottom)|
 |`^`|increments the top of the stack|
-|`&`|(unimplemented)|
+|`&`|pops top of stack and pushes the number at the popped position|
 |`*`|reads 1 byte of input from STDIN and adds it to top of stack|
 |`(`|open loop|
 |`)`|close loop|

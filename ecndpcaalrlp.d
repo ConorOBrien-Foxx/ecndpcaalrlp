@@ -101,8 +101,10 @@ class EcndpcaalrlpState {
                 top++;
                 break;
             
-            // unimplemented
+            // stack index
             case '&':
+                uint index = cast(uint) pop;
+                push(stack[index]);
                 break;
             
             // prints info
