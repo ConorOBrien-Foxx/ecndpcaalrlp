@@ -49,7 +49,7 @@ class EcndpcaalrlpState {
             }
             else if(c == ')') {
                 auto start = positionStack.back;
-                jumpPositions[start] = i + 1;
+                jumpPositions[start] = i;
                 jumpPositions[i] = start;
                 positionStack.popBack;
             }
