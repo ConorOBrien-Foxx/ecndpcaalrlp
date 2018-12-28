@@ -16,10 +16,10 @@ auto getchar() {
 // !@#$%^&*()_+
 class EcndpcaalrlpState {
     private {
-        string      code;
-        uint        ptr;
-        Atom[]      stack;
-        uint[uint]  jumpPositions;
+        string          code;
+        uint            ptr;
+        Atom[]          stack;
+        size_t[size_t]  jumpPositions;
     }
     
     void push(T)(T val) {
