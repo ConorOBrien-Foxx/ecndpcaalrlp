@@ -17,7 +17,7 @@ auto getchar() {
 class EcndpcaalrlpState {
     private {
         string          code;
-        uint            ptr;
+        size_t          ptr;
         Atom[]          stack;
         size_t[size_t]  jumpPositions;
     }
