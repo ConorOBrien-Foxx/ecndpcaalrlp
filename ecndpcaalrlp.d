@@ -10,7 +10,8 @@ alias Atom = BigInt;
 auto getchar() {
     dchar c;
     stdin.readf("%c", &c);
-    return cast(uint) c;
+    // writeln(cast(int) c, ";", cast(long) c, ";",  cast(short) c, ";", stdin.eof);
+    return stdin.eof ? -1 : cast(long) c;
 }
 
 // !@#$%^&*()_+
