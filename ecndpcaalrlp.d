@@ -41,7 +41,7 @@ class EcndpcaalrlpState {
         code = input;
         push(0);
         // parse jumpPositions
-        uint[] positionStack;
+        size_t[] positionStack;
         foreach(i, c; code) {
             if(c == '(') {
                 positionStack ~= i;
