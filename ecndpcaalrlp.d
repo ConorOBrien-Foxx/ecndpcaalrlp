@@ -38,6 +38,13 @@ class EcndpcaalrlpState {
         }
     }
     
+    auto popFrom(size_t ind) {
+        auto res = stack[ind];
+        stack.remove(ind);
+        stack.popBack;
+        return res;
+    }
+    
     this(string input) {
         code = input;
         push(0);
@@ -104,7 +111,21 @@ class EcndpcaalrlpState {
             
             // stack index
             case '&':
-                uint index = cast(uint) pop;
+                auto indexRaw = pop;
+                while(indexRaw < 0) {
+                    indexRaw += stack.length;
+                }
+                uint index = cast(uint) indexRaw;
+                push(popFrom(index));
+                break;
+            
+            // stack index (old)
+            case '=':
+                auto indexRaw = pop;
+                while(indexRaw < 0) {
+                    indexRaw += stack.length;
+                }
+                uint index = cast(uint) indexRaw;
                 push(stack[index]);
                 break;
             
@@ -160,7 +181,12 @@ class EcndpcaalrlpState {
     
     void info() {
         foreach(i, reg; stack) {
-            writefln("%s: %s", i, reg);
+            if(32 <= reg && reg <= 126) {
+                writefln("%s: %s ('%c)", i, reg, cast(dchar) reg);
+            }
+            else {
+                writefln("%s: %s", i, reg);
+            }
         }
     }
 }
