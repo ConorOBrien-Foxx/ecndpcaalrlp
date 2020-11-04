@@ -40,8 +40,7 @@ class EcndpcaalrlpState {
     
     auto popFrom(size_t ind) {
         auto res = stack[ind];
-        stack.remove(ind);
-        stack.popBack;
+        stack = stack.remove(ind);
         return res;
     }
     
@@ -55,6 +54,9 @@ class EcndpcaalrlpState {
                 positionStack ~= i;
             }
             else if(c == ')') {
+                if(positionStack.length == 0) {
+                    throw new Error("Unmatched parentheses");
+                }
                 auto start = positionStack.back;
                 jumpPositions[start] = i;
                 jumpPositions[i] = start;
